@@ -1,0 +1,98 @@
+=head1 NAME
+
+Catalyst::Plugin::ModCluster - Mod Cluster integration	
+
+=head1 SYNOPSIS
+
+    use Catalyst qw/ModCluster/;
+    
+    MyApp->config({
+    	URI => "http://127.0.0.1:6666",
+		NodeName => "MyApp1",
+		Host => "127.0.0.1",
+		Port => "3000",
+		Type => "http",
+		Context => "/myapp,/foo,/bar",
+		Alias "myapp.example.com",
+    });
+    
+
+=head1 DESCRIPTION
+
+Plugin registers application node with apache mod_cluster, which allows
+you to bring up new nodes in the cluster without modifying your load balancer
+configurations.
+
+When application starts, it will automatically send information to your cluster,
+and if node dies, or getting turned off, plugin will update cluster with that information.
+
+Official documentation for mod_cluster can be found here: https://www.jboss.org/mod_cluster
+
+=head1 CONFIGURATION
+
+=over 4
+
+=item * URI
+
+URI/address of your cluster, ex: "http://10.254.1.2:6666"
+you can pass an array of URI's if you have multiple mod_cluster machines, ie:
+	URI => ["http://10.254.1.2:6666", "http://10.254.1.4:6666"]
+	# or
+	URI => "http://10.254.1.2:6666","http://10.254.1.4:6666"
+
+=item * NodeName
+
+Unique name of your applications node, ex: "myapp001"
+
+=item * Type
+
+Servers protocol (http/https) of your node, if left blank
+$c->engine->env->{ SERVER_PROTOCOL } will be used when possible,
+otherwise application will fail to start
+
+=item * Host
+
+Hostname or IP address of your node. ex: 10.254.1.3, if
+left blank, $c->engine->env->{ SERVER_ADDR } will be used when possible,
+otherwise application will fail to start
+
+=item * Port
+
+Port number of your application. ex: 8080, if
+left blank, $c->engine->env->{ SERVER_PORT } will be used when possible,
+otherwise application will fail to start
+
+=item * Context
+
+Array or comma separated list of contexts that you want to register with cluster,
+	Context => ['/myapp', '/foo', '/bar'],
+	# or 
+	Context => "/myapp,/foo,/bar"
+	
+=item * Alias
+
+Server aliases that would be added to your apache virtual host on mod_cluster,
+if not specified, default one will be used ("CatalystApp")
+
+=back
+
+		
+=head1 SUPPORT
+
+Please report all bugs via github at
+https://github.com/winfinit/Net-MCMP
+
+=head1 AUTHOR
+
+Roman Jurkov (winfinit) E<lt>winfinit@cpan.orgE<gt>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2014 the Catalyst::Plugin::ModCluster L</AUTHORS> as listed above.
+
+=head1 LICENSE
+
+This program is free software, you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut
