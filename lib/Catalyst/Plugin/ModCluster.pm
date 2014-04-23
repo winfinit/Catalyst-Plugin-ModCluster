@@ -8,7 +8,7 @@ use Net::MCMP;
 use Text::SimpleTable;
 use sigtrap handler => \&cleanup, qw/normal-signals/;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $mc_conf;
 my @mcmp_objects;
