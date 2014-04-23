@@ -7,7 +7,7 @@ Catalyst::Plugin::ModCluster - Mod Cluster integration
     use Catalyst qw/ModCluster/;
     
     MyApp->config({
-    	URI => "http://127.0.0.1:6666",
+		URI => "http://127.0.0.1:6666",
 		NodeName => "MyApp1",
 		Host => "127.0.0.1",
 		Port => "3000",
