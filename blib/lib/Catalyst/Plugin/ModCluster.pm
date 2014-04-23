@@ -222,7 +222,7 @@ if not specified, default one will be used ("CatalystApp")
 =head1 SUPPORT
 
 Please report all bugs via github at
-https://github.com/winfinit/Catalyst-Plugin-ModCluster
+https://github.com/winfinit/Net-MCMP
 
 =head1 AUTHOR
 
