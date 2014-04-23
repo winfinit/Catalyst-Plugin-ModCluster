@@ -177,10 +177,7 @@ Official documentation for mod_cluster can be found here: https://www.jboss.org/
 =item * URI
 
 URI/address of your cluster, ex: "http://10.254.1.2:6666"
-you can pass an array of URI's if you have multiple mod_cluster machines, ie:
-	URI => ["http://10.254.1.2:6666", "http://10.254.1.4:6666"]
-	# or
-	URI => "http://10.254.1.2:6666","http://10.254.1.4:6666"
+you can pass an array of URI's if you have multiple mod_cluster servers.
 
 =item * NodeName
 
@@ -206,10 +203,7 @@ otherwise application will fail to start
 
 =item * Context
 
-Array or comma separated list of contexts that you want to register with cluster,
-	Context => ['/myapp', '/foo', '/bar'],
-	# or 
-	Context => "/myapp,/foo,/bar"
+Single context of your application, ex "/myapp", or an array of contexts.
 	
 =item * Alias
 
